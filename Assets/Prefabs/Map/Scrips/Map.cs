@@ -37,7 +37,7 @@ public class Map : MonoBehaviour {
                 // Spawning obstacle if has in this position
                 if (mapData.mapObstacles[x, y]) {
                     Transform obstacle = Instantiate(obstaclePrefab, new Vector3(position.x, mapData.mapObstacleHeights[x, y] / 2.0f, position.z), obstaclePrefab.transform.rotation) as Transform;
-                    obstacle.localScale = new Vector3(mapData.tileSize, mapData.mapObstacleHeights[x, y], mapData.tileSize * (1.0f - mapData.outlineSize));
+                    obstacle.localScale = new Vector3(mapData.tileSize, mapData.mapObstacleHeights[x, y], mapData.tileSize);
                     obstacle.parent = mapChild;
 
                     // Coloring
