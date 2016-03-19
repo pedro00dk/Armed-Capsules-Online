@@ -43,8 +43,10 @@ public class MapGenerator : MonoBehaviour {
             }
         }
 
-        System.Random tilePrng = new System.Random(seed);
-        randomTileCoords = Shuffle(tileCoords, tilePrng);
+        // PRNG
+        System.Random prng = new System.Random(seed);
+
+        randomTileCoords = Shuffle(tileCoords, prng);
 
         bool[,] mapObstacles = new bool[mapWidth, mapHeight];
         float[,] mapObstacleHeights = new float[mapWidth, mapHeight];
@@ -53,19 +55,16 @@ public class MapGenerator : MonoBehaviour {
         int obstacleCount = (int) (mapWidth * mapHeight * obstaclePercent);
         int currentObstacleCount = 0;
 
-        System.Random obstaclePrng = new System.Random(seed);
-        System.Random colorPrng = new System.Random(seed);
-
         for (int i = 0; i < obstacleCount; i++) {
             Coord randomCoord = nextRandomCoord();
             mapObstacles[randomCoord.x, randomCoord.y] = true;
             currentObstacleCount++;
             if (MapIsFullyAccessible(mapObstacles, currentObstacleCount, new Coord(mapWidth / 2, mapHeight / 2))) {
-                mapObstacleHeights[randomCoord.x, randomCoord.y] = Mathf.Lerp(minObstacleHeight, maxObstacleHeight, (float) obstaclePrng.NextDouble());
+                mapObstacleHeights[randomCoord.x, randomCoord.y] = Mathf.Lerp(minObstacleHeight, maxObstacleHeight, (float) prng.NextDouble());
                 switch (obstacleColorMode) {
                     case ObstacleColorMode.ALEATORY:
                         mapObstacleColors[randomCoord.x, randomCoord.y] = Color.Lerp(backgroundColor, foregroundColor,
-                            (float) colorPrng.NextDouble());
+                            (float) prng.NextDouble());
                         break;
                     case ObstacleColorMode.ONLY_BACKGROUND:
                         mapObstacleColors[randomCoord.x, randomCoord.y] = backgroundColor;
