@@ -26,6 +26,7 @@ public class Gun : MonoBehaviour {
 
     float nextShootTime;
     bool isTriggerHold;
+    bool isReloading;
 
     void Start() {
         currentMagazineCapacity = magazineCapacity;
@@ -43,11 +44,15 @@ public class Gun : MonoBehaviour {
     }
 
     public void Reload() {
-
+        if (!isReloading && currentMagazineCapacity != magazineCapacity) {
+            StartCoroutine(ReloadAnimation());
+            currentMagazineCapacity = magazineCapacity;
+            currentBurstCapacity = burstCapacity;
+        }
     }
 
     void Shoot() {
-        if (Time.time >= nextShootTime && currentMagazineCapacity > 0) {
+        if (Time.time >= nextShootTime && currentMagazineCapacity > 0 && !isReloading) {
             switch (fireMode) {
                 case FireMode.AUTO:
                     // Do nothing (the time control the shoots)
@@ -72,6 +77,29 @@ public class Gun : MonoBehaviour {
                 projectile.Launch();
             }
         }
+    }
+
+    IEnumerator ReloadAnimation() {
+        isReloading = true;
+
+        Vector3 initialEulerAngles = transform.localEulerAngles;
+        float maxReloadAngle = 30;
+
+        float incRate = 1 / reloadTime;
+        float percent = 0;
+
+        while (percent < 1) {
+            percent += incRate * Time.deltaTime;
+            float interpolation = 4 * (-Mathf.Pow(percent, 2) + percent);
+            float currentReloadAngle = Mathf.Lerp(0, maxReloadAngle, interpolation);
+            transform.localEulerAngles = initialEulerAngles + Vector3.left * currentReloadAngle;
+
+            yield return null;
+        }
+
+        transform.localEulerAngles = initialEulerAngles;
+
+        isReloading = false;
     }
 
     public enum FireMode {
