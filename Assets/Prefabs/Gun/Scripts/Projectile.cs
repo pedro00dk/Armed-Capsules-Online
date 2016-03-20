@@ -5,7 +5,6 @@ using System.Collections;
 [RequireComponent(typeof(TrailRenderer))]
 public class Projectile : MonoBehaviour {
 
-    public Color trailColor;
     public float lifeTime;
 
     // Internal properties
@@ -19,8 +18,7 @@ public class Projectile : MonoBehaviour {
     void Awake() {
         body = GetComponent<Rigidbody>();
         body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        tRend = GetComponent<TrailRenderer>();
-        tRend.material.SetColor("_TintColor", trailColor);
+        // tRend = GetComponent<TrailRenderer>();
     }
 
     public void SetProperties(float velocity, float damage) {
