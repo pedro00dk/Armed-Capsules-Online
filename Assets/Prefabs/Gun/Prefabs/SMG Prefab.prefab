@@ -475,12 +475,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  projectileVelocity: 25
+  projectileVelocity: 20
   projectileDamage: 3
   projectileLifeTime: 4
-  fireRate: 12
+  fireRate: 10
   magazineCapacity: 25
-  reloadTime: 0.4
+  reloadTime: 1
   burstCapacity: 0
   projectilePrefab: {fileID: 11440144, guid: f806204e81ac38e44b3d564d90a86fbe, type: 2}
   barrel:

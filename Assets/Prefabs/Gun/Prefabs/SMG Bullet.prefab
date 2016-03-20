@@ -80,7 +80,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &6545496
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -151,8 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b834017ebd988794ba197bdb0e20d358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailColor: {r: 1, g: 1, b: 1, a: 1}
-  lifeTime: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
