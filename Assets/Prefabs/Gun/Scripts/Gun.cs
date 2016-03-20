@@ -33,6 +33,10 @@ public class Gun : MonoBehaviour {
 
     }
 
+    public void Reload() {
+
+    }
+
     void Shoot() {
 
     }
