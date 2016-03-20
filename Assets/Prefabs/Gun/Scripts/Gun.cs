@@ -5,17 +5,19 @@ public class Gun : MonoBehaviour {
 
     [Header("Gun properties")]
     public FireMode fireMode;
-    public float projectileVelocity;
-    public float projectileDamage;
-    public float projectileLifeTime;
     public float fireRate;
     public int magazineCapacity;
     public float reloadTime;
     [Space]
     public int burstCapacity;
     [Space]
-    public Projectile projectilePrefab;
     public Transform[] barrel;
+
+    [Header("Projectile properties")]
+    public Projectile projectilePrefab;
+    public float projectileVelocity;
+    public float projectileDamage;
+    public float projectileLifeTime;
 
     // Internal properties
 
