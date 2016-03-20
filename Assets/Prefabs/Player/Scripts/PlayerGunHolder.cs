@@ -20,6 +20,10 @@ public class PlayerGunHolder : MonoBehaviour {
     }
 
     void Update() {
+
+        // Setting the gun holder rotation equals to the camera rotation
+        gunHolder.localEulerAngles = playerControllerCamera.transform.localEulerAngles;
+
         if (Input.GetMouseButtonDown(0)) {
             equippedGun.HoldTrigger();
         } else if (Input.GetMouseButtonUp(0)) {
