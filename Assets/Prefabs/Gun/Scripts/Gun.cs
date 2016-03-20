@@ -5,14 +5,16 @@ public class Gun : MonoBehaviour {
 
     [Header("Gun properties")]
     public FireMode fireMode;
-    public float shootDamage;
-    public float shootSpeed;
+    public float projectileVelocity;
+    public float projectileDamage;
+    public float projectileLifeTime;
     public float fireRate;
     public int magazineCapacity;
     public float reloadTime;
     [Space]
     public int burstCapacity;
     [Space]
+    public Projectile projectilePrefab;
     public Transform[] barrel;
 
     // Internal properties
@@ -26,7 +28,7 @@ public class Gun : MonoBehaviour {
 	}
 
     public void HoldTrigger() {
-
+        Shoot();
     }
 
     public void ReleaseTrigger() {
@@ -38,7 +40,9 @@ public class Gun : MonoBehaviour {
     }
 
     void Shoot() {
-
+        Projectile projectile = Instantiate(projectilePrefab, barrel[0].position, barrel[0].rotation * projectilePrefab.transform.rotation) as Projectile;
+        projectile.SetProperties(projectileVelocity, projectileDamage, projectileLifeTime);
+        projectile.Launch();
     }
 
     public enum FireMode {
