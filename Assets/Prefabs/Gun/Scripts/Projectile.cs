@@ -5,12 +5,11 @@ using System.Collections;
 [RequireComponent(typeof(TrailRenderer))]
 public class Projectile : MonoBehaviour {
 
-    public float lifeTime;
-
     // Internal properties
 
-    float projectileVelocity;
-    float projectileDamage;
+    float velocity;
+    float damage;
+    float lifeTime;
 
     Rigidbody body;
     TrailRenderer tRend;
@@ -21,13 +20,14 @@ public class Projectile : MonoBehaviour {
         // tRend = GetComponent<TrailRenderer>();
     }
 
-    public void SetProperties(float velocity, float damage) {
-        projectileVelocity = velocity;
-        projectileDamage = damage;
+    public void SetProperties(float velocity, float damage, float lifeTime) {
+        this.velocity = velocity;
+        this.damage = damage;
+        this.lifeTime = lifeTime;
     }
 
     public void Launch() {
-        body.AddForce(transform.forward * projectileVelocity, ForceMode.VelocityChange);
+        body.AddForce(transform.forward * velocity, ForceMode.VelocityChange);
         StartCoroutine(DestroyProjectile(lifeTime));
         Destroy(gameObject, lifeTime);
     }
