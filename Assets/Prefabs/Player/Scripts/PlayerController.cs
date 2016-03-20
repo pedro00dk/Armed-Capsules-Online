@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent(typeof(Player))]
-[RequireComponent(typeof(Camera))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
 
