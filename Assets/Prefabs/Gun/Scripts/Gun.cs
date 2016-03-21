@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Gun : MonoBehaviour {
 
     [Header("Gun properties")]
@@ -29,7 +30,20 @@ public class Gun : MonoBehaviour {
     public float horizontalAngleRecoilResolveTime;
     public float minMaxHorizontalAngle;
 
+    [Header("Effects")]
+    public Sprite[] shootFlashes;
+    public SpriteRenderer[] shootFlashRenderers;
+    [Space]
+    public Light shootLight;
+    [Space]
+    public float shootEffectsTime;
+    [Space]
+    public AudioClip shootSound;
+    public AudioClip reloadSound;
+
     // Internal properties
+
+    AudioSource gunSoundPlayer;
 
     int currentMagazineCapacity;
     int currentBurstCapacity;
@@ -46,6 +60,7 @@ public class Gun : MonoBehaviour {
     void Start() {
         currentMagazineCapacity = magazineCapacity;
         currentBurstCapacity = burstCapacity;
+        gunSoundPlayer = GetComponent<AudioSource>();
         StartCoroutine(RecoilResolver());
     }
 
@@ -102,11 +117,18 @@ public class Gun : MonoBehaviour {
                 : -Random.Range(horizontalAngleRecoilVariation.x, horizontalAngleRecoilVariation.y)),
                 -minMaxHorizontalAngle, minMaxHorizontalAngle
             );
+
+            // Effects
+            StartCoroutine(ShootEffects());
         }
     }
 
     IEnumerator ReloadAnimation() {
         isReloading = true;
+
+        // Reload sound effect
+        gunSoundPlayer.clip = reloadSound;
+        gunSoundPlayer.Play();
 
         Vector3 initialEulerAngles = transform.localEulerAngles;
         float maxReloadAngle = 30;
@@ -137,6 +159,31 @@ public class Gun : MonoBehaviour {
                 actualHorizontalAngle = Mathf.SmoothDamp(actualHorizontalAngle, 0, ref currentHorizontalAngleRecoilVelocity, horizontalAngleRecoilResolveTime),
                 0
             );
+        }
+    }
+
+    IEnumerator ShootEffects() {
+
+        // Sound
+        gunSoundPlayer.clip = shootSound;
+        gunSoundPlayer.Play();
+
+        //Light
+        shootLight.gameObject.SetActive(true);
+
+        // Flashes
+        int flashIndex = Random.Range(0, shootFlashes.Length);
+        foreach(SpriteRenderer renderer in shootFlashRenderers) {
+            renderer.sprite = shootFlashes[flashIndex];
+            renderer.gameObject.SetActive(true);
+        }
+
+        // Disable
+        yield return new WaitForSeconds(shootEffectsTime);
+
+        shootLight.gameObject.SetActive(false);
+        foreach (SpriteRenderer renderer in shootFlashRenderers) {
+            renderer.gameObject.SetActive(false);
         }
     }
 
