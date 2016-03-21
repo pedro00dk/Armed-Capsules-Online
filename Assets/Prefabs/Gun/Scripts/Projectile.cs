@@ -28,11 +28,11 @@ public class Projectile : MonoBehaviour {
 
     public void Launch() {
         body.AddForce(transform.forward * velocity, ForceMode.VelocityChange);
-        StartCoroutine(DestroyProjectile(lifeTime));
+        StartCoroutine(DestroyProjectile());
         Destroy(gameObject, lifeTime);
     }
 
-    IEnumerator DestroyProjectile(float lifeTime) {
+    IEnumerator DestroyProjectile() {
         yield return new WaitForSeconds(lifeTime * 2 / 3);
 
         float incRate = 1 / (lifeTime / 3);
