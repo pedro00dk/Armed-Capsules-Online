@@ -39,8 +39,4 @@ public class Shell : MonoBehaviour {
             yield return null;
         }
     }
-
-    void OnCollisionEnter(Collision col) {
-        print(col.collider.name);
-    }
 }
