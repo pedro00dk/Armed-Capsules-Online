@@ -15,7 +15,7 @@ GameObject:
   - 54: {fileID: 5437662}
   - 114: {fileID: 11440144}
   m_Layer: 0
-  m_Name: SMG Bullet
+  m_Name: SMG Bullet Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
