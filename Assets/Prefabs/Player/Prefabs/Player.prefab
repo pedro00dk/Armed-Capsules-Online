@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  deathEffectPrefab: {fileID: 19843548, guid: 40a59cdb72487714789ee953eb71b8cf, type: 2}
 --- !u!124 &12458458
 Behaviour:
   m_ObjectHideFlags: 1
