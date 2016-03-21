@@ -52,10 +52,6 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-    public float GetDamage() {
-        return damage;
-    }
-
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag(mapFloorTag)) {
             damage = 0;
@@ -63,7 +59,7 @@ public class Projectile : MonoBehaviour {
             damage /= 2;
         } else if (collision.gameObject.CompareTag(playerTag) && damage > 0) {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.HitByProjectile(this);
+            player.Hit(damage, transform.position);
             Destroy(gameObject);
         }
     }
