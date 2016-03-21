@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(TrailRenderer))]
 public class Projectile : MonoBehaviour {
 
@@ -13,6 +14,11 @@ public class Projectile : MonoBehaviour {
 
     Rigidbody body;
     TrailRenderer tRend;
+
+    // Map tags
+    readonly string playerTag = "Player";
+    readonly string mapFloorTag = "Map Floor";
+    readonly string mapObstacleTag = "Map Obstacle";
 
     void Awake() {
         body = GetComponent<Rigidbody>();
@@ -43,6 +49,22 @@ public class Projectile : MonoBehaviour {
             percent += Time.deltaTime * incRate;
             transform.localScale = projectileScale * (1 - percent);
             yield return null;
+        }
+    }
+
+    public float GetDamage() {
+        return damage;
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag(mapFloorTag)) {
+            damage = 0;
+        } else if (collision.gameObject.CompareTag(mapObstacleTag) && damage > 0) {
+            damage /= 2;
+        } else if (collision.gameObject.CompareTag(playerTag) && damage > 0) {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.HitByProjectile(this);
+            Destroy(gameObject);
         }
     }
 }
