@@ -4287,7 +4287,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 433474, guid: 87f116ae805dc5940bed18f6ec5f50ea, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 185618, guid: 87f116ae805dc5940bed18f6ec5f50ea, type: 2}
       propertyPath: m_Name
@@ -4324,6 +4324,10 @@ Prefab:
     - target: {fileID: 129396, guid: 87f116ae805dc5940bed18f6ec5f50ea, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406394, guid: 87f116ae805dc5940bed18f6ec5f50ea, type: 2}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87f116ae805dc5940bed18f6ec5f50ea, type: 2}
