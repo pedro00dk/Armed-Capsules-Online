@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour {
     public int burstCapacity;
     [Space]
     public Transform[] barrel;
+    public Transform ejectionPort;
 
     [Header("Projectile properties")]
     public Projectile projectilePrefab;
@@ -40,6 +41,11 @@ public class Gun : MonoBehaviour {
     [Space]
     public AudioClip shootSound;
     public AudioClip reloadSound;
+
+    [Header("Shell properties")]
+    public Shell shellPrefab;
+    public float ejectionVelocity;
+    public float shellLifeTime;
 
     // Internal properties
 
@@ -120,6 +126,11 @@ public class Gun : MonoBehaviour {
 
             // Effects
             StartCoroutine(ShootEffects());
+
+            // Shell
+            Shell shell = Instantiate(shellPrefab, ejectionPort.position, ejectionPort.rotation) as Shell;
+            shell.SetProperties(ejectionVelocity, shellLifeTime);
+            shell.Eject();
         }
     }
 
