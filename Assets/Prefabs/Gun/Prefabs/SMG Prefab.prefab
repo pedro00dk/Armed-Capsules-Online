@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 405756}
-  - 136: {fileID: 13613066}
+  - 135: {fileID: 13551524}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -191,6 +191,21 @@ GameObject:
   - 23: {fileID: 2383632}
   m_Layer: 0
   m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &181614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 440742}
+  m_Layer: 0
+  m_Name: Ejection Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,6 +309,7 @@ Transform:
   m_Children:
   - {fileID: 405756}
   - {fileID: 497176}
+  - {fileID: 440742}
   - {fileID: 486704}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -321,6 +337,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 486704}
   m_RootOrder: 1
+--- !u!4 &440742
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.079, y: 0.0686, z: 0.2895}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 423210}
+  m_RootOrder: 2
 --- !u!4 &440972
 Transform:
   m_ObjectHideFlags: 1
@@ -384,7 +412,7 @@ Transform:
   - {fileID: 448664}
   - {fileID: 434146}
   m_Father: {fileID: 423210}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &493800
 Transform:
   m_ObjectHideFlags: 1
@@ -669,7 +697,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -732,8 +760,9 @@ MonoBehaviour:
   burstCapacity: 0
   barrel:
   - {fileID: 497176}
+  ejectionPort: {fileID: 440742}
   projectilePrefab: {fileID: 11440144, guid: f806204e81ac38e44b3d564d90a86fbe, type: 2}
-  projectileVelocity: 20
+  projectileVelocity: 25
   projectileDamage: 3
   projectileLifeTime: 4
   kickRecoilVariation: {x: 0.03, y: 0.05}
@@ -741,7 +770,7 @@ MonoBehaviour:
   verticalAngleRecoilVariation: {x: 2, y: 4}
   verticalAngleRecoilResolveTime: 0.2
   maxVerticalAngle: 12
-  horizontalAngleRecoilVariation: {x: 1, y: 1}
+  horizontalAngleRecoilVariation: {x: 1, y: 2}
   horizontalAngleRecoilResolveTime: 0.2
   minMaxHorizontalAngle: 5
   shootFlashes:
@@ -756,8 +785,11 @@ MonoBehaviour:
   shootEffectsTime: 0.03
   shootSound: {fileID: 8300000, guid: 255d538c0888657419145ef2f44d0bfa, type: 3}
   reloadSound: {fileID: 8300000, guid: e7559c60267ec7e4c9381f5f25bdbb62, type: 3}
---- !u!136 &13613066
-CapsuleCollider:
+  shellPrefab: {fileID: 11455684, guid: 5042831419914324e8dd1cb1ce7b51b8, type: 2}
+  ejectionVelocity: 5
+  shellLifeTime: 4
+--- !u!135 &13551524
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -765,10 +797,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1.1
-  m_Direction: 2
-  m_Center: {x: 0, y: -0.08, z: -0.05}
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0.28}
 --- !u!212 &21231350
 SpriteRenderer:
   m_ObjectHideFlags: 1
