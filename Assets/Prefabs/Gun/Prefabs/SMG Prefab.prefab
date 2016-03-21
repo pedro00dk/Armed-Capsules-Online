@@ -475,16 +475,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  projectileVelocity: 20
-  projectileDamage: 3
-  projectileLifeTime: 4
   fireRate: 10
   magazineCapacity: 25
   reloadTime: 1
   burstCapacity: 0
-  projectilePrefab: {fileID: 11440144, guid: f806204e81ac38e44b3d564d90a86fbe, type: 2}
   barrel:
   - {fileID: 486704}
+  projectilePrefab: {fileID: 11440144, guid: f806204e81ac38e44b3d564d90a86fbe, type: 2}
+  projectileVelocity: 20
+  projectileDamage: 3
+  projectileLifeTime: 4
+  kickRecoilVariation: {x: 0.03, y: 0.05}
+  kickRecoilResolveTime: 0.25
+  verticalAngleRecoilVariation: {x: 2, y: 4}
+  verticalAngleRecoilResolveTime: 0.2
+  maxVerticalAngle: 12
+  horizontalAngleRecoilVariation: {x: 1, y: 1}
+  horizontalAngleRecoilResolveTime: 0.2
+  minMaxHorizontalAngle: 5
 --- !u!136 &13613066
 CapsuleCollider:
   m_ObjectHideFlags: 1
