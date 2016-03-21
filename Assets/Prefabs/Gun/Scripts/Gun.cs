@@ -19,20 +19,34 @@ public class Gun : MonoBehaviour {
     public float projectileDamage;
     public float projectileLifeTime;
 
+    [Header("Recoil properties")]
+    public Vector2 kickRecoilVariation;
+    public float kickRecoilResolveTime;
+    public Vector2 verticalAngleRecoilVariation;
+    public float verticalAngleRecoilResolveTime;
+    public float maxVerticalAngle;
+    public Vector2 horizontalAngleRecoilVariation;
+    public float horizontalAngleRecoilResolveTime;
+    public float minMaxHorizontalAngle;
+
     // Internal properties
 
     int currentMagazineCapacity;
     int currentBurstCapacity;
-
-    //
-
     float nextShootTime;
     bool isTriggerHold;
     bool isReloading;
+    float actualVerticalAngle;
+    float actualHorizontalAngle;
+    Vector3 currentKickRecoilVelocity;
+    float currentVerticalAngleRecoilVelocity;
+    float currentHorizontalAngleRecoilVelocity;
+
 
     void Start() {
         currentMagazineCapacity = magazineCapacity;
         currentBurstCapacity = burstCapacity;
+        StartCoroutine(RecoilResolver());
     }
 
     public void HoldTrigger() {
@@ -78,6 +92,16 @@ public class Gun : MonoBehaviour {
                 projectile.SetProperties(projectileVelocity, projectileDamage, projectileLifeTime);
                 projectile.Launch();
             }
+            // Recoil
+            transform.localPosition += Vector3.back * Random.Range(kickRecoilVariation.x, kickRecoilVariation.y);
+            actualVerticalAngle = Mathf.Clamp(actualVerticalAngle + Random.Range(verticalAngleRecoilVariation.x, verticalAngleRecoilVariation.y), 0, maxVerticalAngle);
+            actualHorizontalAngle = Mathf.Clamp(
+                actualHorizontalAngle
+                + ((Random.Range(-10, 10) > 0)
+                ? Random.Range(horizontalAngleRecoilVariation.x, horizontalAngleRecoilVariation.y)
+                : -Random.Range(horizontalAngleRecoilVariation.x, horizontalAngleRecoilVariation.y)),
+                -minMaxHorizontalAngle, minMaxHorizontalAngle
+            );
         }
     }
 
@@ -102,6 +126,18 @@ public class Gun : MonoBehaviour {
         transform.localEulerAngles = initialEulerAngles;
 
         isReloading = false;
+    }
+
+    IEnumerator RecoilResolver() {
+        while (true) {
+            yield return new WaitForEndOfFrame();
+            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref currentKickRecoilVelocity, kickRecoilResolveTime);
+            transform.localEulerAngles = new Vector3(
+                -(actualVerticalAngle = Mathf.SmoothDamp(actualVerticalAngle, 0, ref currentVerticalAngleRecoilVelocity, verticalAngleRecoilResolveTime)),
+                actualHorizontalAngle = Mathf.SmoothDamp(actualHorizontalAngle, 0, ref currentHorizontalAngleRecoilVelocity, horizontalAngleRecoilResolveTime),
+                0
+            );
+        }
     }
 
     public enum FireMode {
