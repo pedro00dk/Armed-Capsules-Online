@@ -10,7 +10,11 @@ public class Player : MonoBehaviour {
 
     float currentHealth;
 
-	void Start () {
+    void Start() {
         currentHealth = health;
-	}
+    }
+
+    public void HitByProjectile(Projectile projectile) {
+        health -= projectile.GetDamage();
+    }
 }
