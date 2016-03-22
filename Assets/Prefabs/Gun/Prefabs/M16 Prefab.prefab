@@ -639,7 +639,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.07, z: 1.9}
+  m_LocalPosition: {x: 0, y: 0.07, z: 1.682}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 462382}
@@ -1214,10 +1214,10 @@ MonoBehaviour:
   horizontalAngleRecoilResolveTime: 0.15
   minMaxHorizontalAngle: 5
   shootFlashes:
-  - {fileID: 21300000, guid: 29e2731730cbf904283c78baf7b6ac6c, type: 3}
-  - {fileID: 21300002, guid: 29e2731730cbf904283c78baf7b6ac6c, type: 3}
-  - {fileID: 21300004, guid: 29e2731730cbf904283c78baf7b6ac6c, type: 3}
-  - {fileID: 21300006, guid: 29e2731730cbf904283c78baf7b6ac6c, type: 3}
+  - {fileID: 21300000, guid: e4112d7c0b2fda94c800aec0a3b8c522, type: 3}
+  - {fileID: 21300002, guid: e4112d7c0b2fda94c800aec0a3b8c522, type: 3}
+  - {fileID: 21300004, guid: e4112d7c0b2fda94c800aec0a3b8c522, type: 3}
+  - {fileID: 21300006, guid: e4112d7c0b2fda94c800aec0a3b8c522, type: 3}
   shootFlashRenderers:
   - {fileID: 21211916}
   - {fileID: 21268064}
@@ -1254,7 +1254,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29e2731730cbf904283c78baf7b6ac6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4112d7c0b2fda94c800aec0a3b8c522, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1284,7 +1284,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29e2731730cbf904283c78baf7b6ac6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4112d7c0b2fda94c800aec0a3b8c522, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
