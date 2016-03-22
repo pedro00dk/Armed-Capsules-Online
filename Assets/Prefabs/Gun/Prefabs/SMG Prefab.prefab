@@ -753,16 +753,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  fireRate: 10
-  magazineCapacity: 25
-  reloadTime: 1
+  fireRate: 15
+  magazineCapacity: 20
+  reloadTime: 1.2
   burstCapacity: 0
   barrel:
   - {fileID: 497176}
   ejectionPort: {fileID: 440742}
   projectilePrefab: {fileID: 11440144, guid: f806204e81ac38e44b3d564d90a86fbe, type: 2}
-  projectileVelocity: 25
-  projectileDamage: 3
+  projectileVelocity: 20
+  projectileDamage: 5
   projectileLifeTime: 4
   kickRecoilVariation: {x: 0.03, y: 0.05}
   kickRecoilResolveTime: 0.25
