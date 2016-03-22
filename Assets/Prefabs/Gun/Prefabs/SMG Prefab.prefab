@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  fireRate: 15
+  fireRate: 12
   magazineCapacity: 20
   reloadTime: 1.2
   burstCapacity: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   - {fileID: 21231350}
   shootLight: {fileID: 10803910}
   shootEffectsTime: 0.03
-  shootSound: {fileID: 8300000, guid: 255d538c0888657419145ef2f44d0bfa, type: 3}
+  shootSound: {fileID: 8300000, guid: e2af6c54eff3ddd49824031669e152c8, type: 3}
   reloadSound: {fileID: 8300000, guid: e7559c60267ec7e4c9381f5f25bdbb62, type: 3}
   shellPrefab: {fileID: 11455684, guid: 5042831419914324e8dd1cb1ce7b51b8, type: 2}
   ejectionVelocity: 5
